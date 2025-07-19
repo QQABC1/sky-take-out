@@ -9,45 +9,83 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>sky-common</artifactId>
+
     <dependencies>
+        <!-- Lombok：简化实体类代码（getter/setter等） -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.24</version> <!-- 明确版本 -->
+            <optional>true</optional>
         </dependency>
+
+        <!-- FastJSON：JSON处理工具 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+            <version>1.2.83</version> <!-- 稳定版本 -->
         </dependency>
+
+        <!-- Commons Lang：字符串、集合等工具类 -->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
+            <version>2.6</version> <!-- 经典版本，兼容大部分场景 -->
         </dependency>
+
+        <!-- Spring JSON：Spring 内置的JSON处理（依赖Jackson） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-json</artifactId>
+            <!-- 版本继承自父工程 spring-boot-starter-parent，无需重复指定 -->
         </dependency>
+
+        <!-- JWT：生成和解析JWT令牌 -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
+            <version>0.9.1</version> <!-- 稳定版本，若用新版本需注意API变化 -->
         </dependency>
-        <!--支持配置属性类，yml文件中可以提示配置项-->
+
+        <!-- 配置属性处理器：支持yml配置文件提示 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+            <!-- 版本继承自父工程 -->
         </dependency>
+
+        <!-- 阿里云OSS：对象存储SDK -->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
+            <version>3.15.1</version> <!-- 较新稳定版本 -->
         </dependency>
+
+        <!-- JAXB API：解决阿里云OSS等依赖的XML处理问题（Java 9+需要） -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
         </dependency>
-        <!--微信支付-->
+
+        <!-- 日志框架：SLF4J + Logback（解决 log 变量找不到问题） -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version> <!-- 与Spring Boot默认兼容 -->
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version> <!-- 与SLF4J 1.7.x兼容 -->
+        </dependency>
+
+        <!-- 微信支付SDK：微信支付V3接口 -->
         <dependency>
             <groupId>com.github.wechatpay-apiv3</groupId>
             <artifactId>wechatpay-apache-httpclient</artifactId>
+            <version>0.4.7</version> <!-- 较新稳定版本，兼容大部分接口 -->
         </dependency>
     </dependencies>
 </project>

@@ -14,12 +14,11 @@ spring:
       password: ${sky.datasource.password}
 
 mybatis:
-  #mapper配置文件
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml  # 注意缩进（2个空格）
   type-aliases-package: com.sky.entity
   configuration:
-    #开启驼峰命名
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: true  # 缩进需在configuration下
+
 
 logging:
   level:
