@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.DishMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into dish(
+        name, category_id, price, image, description,
+        create_time, update_time, create_user, update_user, status
+        ) values (
+        #{name},        <!-- 对应实体类的name属性 -->
+        #{categoryId},    <!-- 对应实体类的category属性 -->
+        #{price},       <!-- 对应实体类的price属性 -->
+        #{image},       <!-- 对应实体类的image属性 -->
+        #{description}, <!-- 对应实体类的description属性 -->
+        #{createTime},  <!-- 对应实体类的createTime属性（驼峰命名自动映射） -->
+        #{updateTime},  <!-- 对应实体类的updateTime属性 -->
+        #{createUser},  <!-- 对应实体类的createUser属性 -->
+        #{updateUser},  <!-- 对应实体类的updateUser属性 -->
+        #{status}       <!-- 对应实体类的status属性 -->
+        )
+    </insert>
+
+    <select id="pageQuery" resultType="com.sky.vo.DishVO">
+        select d.*, c.name as categoryName from dish d left outer join category c on d.category_id = c.id
+        <where>
+            <if test="name != null">
+                and d.name like concat('%', #{name}, '%')
+            </if>
+            <if test="categoryId != null">
+                and d.category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and d.status = #{status}
+            </if>
+        </where>
+        order by d.create_time desc
+    </select>
+</mapper>
